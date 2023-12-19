@@ -5,6 +5,8 @@ import { FC } from "react";
 import { Button } from "../ui/button";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+import Link from "next/link";
 
 type Category = (typeof PRODUCT_CATEGORIES)[number];
 
@@ -25,25 +27,71 @@ const NavItem: FC<NavItemProps> = ({
 }: NavItemProps) => {
   return (
     <>
-      <div className='flex'>
-      <div className='relative flex items-center'>
-        <Button
-          className='gap-1.5'
-          onClick={handleOpen}
-          variant={isOpen ? 'secondary' : 'ghost'}>
-          {category.label}
-          <ChevronDown
+      <div className="flex">
+        <div className="relative flex items-center">
+          <Button
+            className="gap-1.5"
+            onClick={handleOpen}
+            variant={isOpen ? "secondary" : "ghost"}
+          >
+            {category.label}
+            <ChevronDown
+              className={cn("h-4 w-4 transition-all text-muted-foreground", {
+                "-rotate-180": isOpen,
+              })}
+            />
+          </Button>
+        </div>
+
+        {/* isOpen */}
+        {isOpen ? (
+          <div
+            //  onClick={() => close()}
             className={cn(
-              'h-4 w-4 transition-all text-muted-foreground',
+              "absolute inset-x-0 top-full text-sm text-muted-foreground",
               {
-                '-rotate-180': isOpen,
+                "animate-in fade-in-10 slide-in-from-top-5": !isAnyOpen,
               }
             )}
-          />
-        </Button>
+          >
+            <div className="absolute inset-0 top-1/2 bg-white shadow" />
+
+            {/*  */}
+            <div className=" relative bg-white">
+              <div className="mx-auto max-w-6xl px-6">
+                <div className="grid grid-cols-4 gap-x-8 gap-y-10 py-16">
+                  <div className="col-span-4 col-start-1 grid grid-cols-3 gap-x-8">
+                    {category.featured.map((i) => (
+                      <div
+                        key={i.name}
+                        className="relative text-base sm:text-sm"
+                      >
+                        <div className="relative aspect-video overflow-hidden rounded-lg bg-gray-100 hover:opacity-75">
+                          <Image
+                            src={i.imageSrc}
+                            alt="product category image"
+                            fill
+                            className="object-cover object-center"
+                          />
+                        </div>
+                        <Link
+                          href={i.href}
+                          className="mt-6 block font-medium text-gray-900"
+                        >
+                          {i.name}
+                        </Link>
+                        <p className="mt-1" aria-hidden="true">
+                          Shop now
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : null}
       </div>
-     
-    </div>
     </>
   );
 };

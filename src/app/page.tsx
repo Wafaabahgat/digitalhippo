@@ -48,17 +48,25 @@ export default function Home() {
 
       <section>
         <MaxWidthWrapper>
-          <div className=" grid grid-cols-1 gap-y-12 lg:grid-cols-3 sm:gap-y-6 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-y-12 lg:grid-cols-3 sm:gap-y-6 sm:grid-cols-2">
             {perks.map((e) => (
-              <div key={e.name} className="text-center md:flex md:items-start md:text-left lg:text-center lg:block">
+              // md:flex md:items-start md:text-left
+              <div
+                key={e.name}
+                className="text-center block"
+              >
                 <div className="flex justify-center md:flex-grow-0">
                   <div className="rounded-full h-14 w-14 flex justify-center items-center bg-blue-100 text-blue-600">
                     {<e.Icon className=" w-1/3 h-1/3" />}
                   </div>
                 </div>
-                <div className="mt-3 md:mt-1 lg:ml-0 ml-4">
-                  <h3 className="text-base font-medium text-gray-900">{e.name}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{e.description}</p>
+                <div className="mt-3 lg:ml-1 ml-4">
+                  <h3 className="text-base font-medium text-gray-900">
+                    {e.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {e.description}
+                  </p>
                 </div>
               </div>
             ))}

@@ -4,7 +4,7 @@ import express from "express";
 //import * as trpcExpress from "@trpc/server/adapters/express";
 //import { appRouter } from "./trpc";
 //import { inferAsyncReturnType } from "@trpc/server";
-//import bodyParser from "body-parser";
+import bodyParser from "body-parser";
 import { IncomingMessage } from "http";
 //import { stripeWebhookHandler } from "./webhooks";
 import nextBuild from "next/dist/build";

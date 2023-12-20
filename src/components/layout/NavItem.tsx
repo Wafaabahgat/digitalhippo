@@ -13,7 +13,7 @@ type Category = (typeof PRODUCT_CATEGORIES)[number];
 interface NavItemProps {
   category: Category;
   handleOpen: () => void;
-  close: () => void;
+  //close: () => void;
   isOpen: boolean;
   isAnyOpen: boolean;
 }
@@ -22,7 +22,7 @@ const NavItem: FC<NavItemProps> = ({
   isAnyOpen,
   category,
   handleOpen,
-  close,
+ // close,
   isOpen,
 }: NavItemProps) => {
   return (
@@ -46,7 +46,7 @@ const NavItem: FC<NavItemProps> = ({
         {/* isOpen */}
         {isOpen ? (
           <div
-            //  onClick={() => close()}
+           // onClick={() => close()}
             className={cn(
               "absolute inset-x-0 top-full text-sm text-muted-foreground",
               {

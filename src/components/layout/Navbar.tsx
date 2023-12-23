@@ -1,15 +1,30 @@
-import { FC } from "react";
+
+
+import { FC, useEffect, useState } from "react";
 import MaxWidthWrapper from "../MaxWidthWrapper";
 import Link from "next/link";
 import { Icons } from "../icons";
 import NavItems from "./NavItems";
 import { buttonVariants } from "../ui/button";
 import Cart from "./Cart";
+import { getServerSideUser } from "@/lib/payload-utils";
+import { cookies } from "next/headers";
+import UserAccNav from "../UserAccNav";
 
 interface NavbarProps {}
 
 const Navbar: FC<NavbarProps> = () => {
-  const user = null;
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const nextCookies = cookies();
+      const { user } = await getServerSideUser(nextCookies);
+      setUser(user);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -50,10 +65,10 @@ const Navbar: FC<NavbarProps> = () => {
                     )}
 
                     {user ? (
-                      <p></p>
+                      <UserAccNav />
                     ) : (
                       <Link
-                        href="/signup"
+                        href="/sign-up"
                         className={buttonVariants({ variant: "ghost" })}
                       >
                         Create Account

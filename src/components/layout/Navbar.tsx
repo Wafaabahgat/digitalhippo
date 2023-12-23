@@ -1,6 +1,6 @@
+"use client";
 
-
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState,useClient } from "react";
 import MaxWidthWrapper from "../MaxWidthWrapper";
 import Link from "next/link";
 import { Icons } from "../icons";
@@ -14,6 +14,9 @@ import UserAccNav from "../UserAccNav";
 interface NavbarProps {}
 
 const Navbar: FC<NavbarProps> = () => {
+  // const nextCookies = cookies();
+  // const { user } = await getServerSideUser(nextCookies);
+
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
